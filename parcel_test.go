@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"math/rand"
 	"testing"
@@ -34,8 +33,7 @@ func TestAddGetDelete(t *testing.T) {
 	// настройте подключение к БД
 	db, err := sql.Open("sqlite", "tracker.db")
 	if err != nil {
-		fmt.Println(err)
-		return
+		assert.Fail(t, "can't reach db, error: %v", err)
 	}
 	defer db.Close()
 
@@ -70,8 +68,7 @@ func TestSetAddress(t *testing.T) {
 	// настройте подключение к БД
 	db, err := sql.Open("sqlite", "tracker.db")
 	if err != nil {
-		fmt.Println(err)
-		return
+		assert.Fail(t, "can't reach db, error: %v", err)
 	}
 	defer db.Close()
 
@@ -103,8 +100,7 @@ func TestSetStatus(t *testing.T) {
 	// настройте подключение к БД
 	db, err := sql.Open("sqlite", "tracker.db")
 	if err != nil {
-		fmt.Println(err)
-		return
+		assert.Fail(t, "can't reach db, error: %v", err)
 	}
 	defer db.Close()
 
@@ -135,8 +131,7 @@ func TestGetByClient(t *testing.T) {
 	// prepare
 	db, err := sql.Open("sqlite", "tracker.db")
 	if err != nil {
-		fmt.Println(err)
-		return
+		assert.Fail(t, "can't reach db, error: %v", err)
 	}
 	defer db.Close()
 	store := NewParcelStore(db)
